@@ -7,3 +7,5 @@ discord-t/net.js
 discord-t/net.t
 discord-t/ping.ru
 discord-t/source.t
+Bot.sqlite
+json.sqlite
