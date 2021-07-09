@@ -5,7 +5,7 @@ exports.default = {
     once: true,
     execute(client) {
         console.log(`Logged in as ${client.user.tag}!`);
-        client.user.setActivity(`${client.guilds.cache.size} Servers | *help`, { type: 'WATCHING' })
+        client.user.setActivity(`${client.guilds.cache.map(s => s.memberCount).reduce((a, b) => a + b)} Users | *help`, { type: 'WATCHING' })
     }
 };
 // Servers: client.guilds.cache.size
