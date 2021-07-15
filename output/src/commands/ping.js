@@ -5,7 +5,7 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "ping",
-            description: "ping command"
+            description: "Ping/Latency Command"
         });
         this.client = client;
     }
@@ -18,11 +18,19 @@ class Bot_name extends classes_1.Command {
                 description: `
                 Gateway Ping: <:network:855826859085004820> ${this.client.ws.ping}
                 Websocket Ping: <:config:855828811630641163> ${this.client.ws.ping}`,
+               
                 footer: {
                     text: "🌐 Powered by Fairfight"
                 },
+                thumbnail: {
+                    url: this.client.user.avatarURL({
+                        format: "png",
+                        size: 1024
+                    })
+                }
             }
         })
+      
     }
 }
 exports.default = Bot_name;

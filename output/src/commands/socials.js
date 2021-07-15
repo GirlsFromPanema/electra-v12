@@ -7,7 +7,7 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "socials",
-            description: "Electras Socials (under Dev)"
+            description: "Electras Socials"
         });
         this.client = client;
     }
@@ -18,15 +18,23 @@ class Bot_name extends classes_1.Command {
                 color: client.brandingColor,
                 title: "Website + Bot Invite",
                 description: `
-                <:users:855826713018630175> https://fairfight.netlify.app/
-                <:config:855828811630641163> https://bit.ly/3wGUs1r
+                <:users:855826713018630175> [Website](https://fairfight.netlify.app/)
+                <:config:855828811630641163> [Bot Invite](https://bit.ly/3wGUs1r)
                 `,
                 footer: {
                     text: "🌐 Powered by Fairfight"
                 
                 },
-            }
+                thumbnail: {
+                    url: this.client.user.avatarURL({
+                        format: "png",
+                        size: 1024
+                    })
+                }
+            },
+            
         })
+        
     }
 }
 exports.default = Bot_name;

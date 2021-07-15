@@ -33,8 +33,9 @@ class Setup extends classes_1.Command {
   
       `);
 
+    
     if (!msg.member.permissions.has("ADMINISTRATOR"))
-      return msg.channel.send(`You need Admin Perms to execute this Command`);
+      return msg.channel.send(`${msg.author.username}, You need Admin Perms to execute this Command`);
 
     await msg.delete();
 
@@ -63,7 +64,7 @@ class Setup extends classes_1.Command {
       collector1.on("collect", (m) => {
         const channel = client.parseChannelMention(m.content.trim(), msg.guild);
         if (!channel) {
-          msg.channel.send(`This is not an valid Channel!`);
+          msg.channel.send(`:x: | This is not an valid Channel!`);
           embed.delete();
         } else {
           obj.channel = channel.id;
@@ -75,7 +76,7 @@ class Setup extends classes_1.Command {
       collector1.on("end", (collected) => {
         if (collected.size == 0) {
           msg.channel.send(
-            "No channels received in 60 seconds, setup canceled\n\n To rerun, type `*setup`again!"
+            ":x: | No channels received in 60 seconds, setup canceled\n\n To rerun, type `*setup`again!"
           );
           embed.delete();
         }
@@ -100,7 +101,7 @@ class Setup extends classes_1.Command {
       collector2.on("collect", (m) => {
         const role = client.parseRoleMention(m.content.trim(), msg.guild);
         if (!role) {
-          msg.channel.send(`This is not an valid Role!`);
+          msg.channel.send(`:x: | This is not an valid Role!`);
           embed.delete();
         } else {
           obj.role = role.id;
@@ -111,7 +112,7 @@ class Setup extends classes_1.Command {
       });
       collector2.on("end", (collected) => {
         if (collected.size == 0) {
-          msg.channel.send("No roles received in 60 seconds :(");
+          msg.channel.send(":x: | No roles received in 60 seconds :(");
           embed.delete();
         }
       });
@@ -136,7 +137,7 @@ class Setup extends classes_1.Command {
         const bots = m.mentions.members.filter((value) => value.user.bot);
         if (!bots.first()) {
           msg.channel.send(
-            `${message.author.username} Those bots are not on the Server!`
+            `${message.author.username} :x: | Those bots are not on the Server!`
           );
           embed.delete();
         } else {
@@ -148,7 +149,7 @@ class Setup extends classes_1.Command {
       });
       collector3.on("end", (collected) => {
         if (collected.size == 0) {
-          msg.channel.send("No bots received in 60 seconds :(");
+          msg.channel.send(":x: | No bots received in 60 seconds :(");
           embed.delete();
         }
       });

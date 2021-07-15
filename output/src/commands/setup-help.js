@@ -18,14 +18,14 @@ class Bot_name extends classes_1.Command {
                 title: "Setup Help",
                 description: `
                 <:Arrow:855707077812551750> Step 1: Run *setup. 
-                <:network:855826859085004820> She will ask for the Channel where Electra should send the messages to.
+                She will ask for the Channel where Electra should send the messages to.
                 <:Arrow:855707077812551750> Step 2: Provide the Role he should Ping + Bots he should track.
 
                 <:warning:855706704099672075> The Setup is timed, if u don't answer in under a minute, the command gets terminated
-                <:warning:855706704099672075> Note: Please only add Bots you made.
+                <:warning:855706704099672075> Note: Please only add Bots you have made.
                 `,
                 footer: {
-                    text: "🌐 Powered by Fairfight"
+                    text: "Electra | Made with ❤️"
                 },
                 thumbnail: {
                     url: this.client.user.avatarURL({
@@ -33,6 +33,12 @@ class Bot_name extends classes_1.Command {
                         size: 1024
                     })
                 },
+                thumbnail: {
+                    url: this.client.user.avatarURL({
+                        format: "png",
+                        size: 1024
+                    })
+                }
             }
         })
     }

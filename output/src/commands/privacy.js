@@ -35,6 +35,12 @@ class Bot_name extends classes_1.Command {
                 footer: {
                     text: "🌐 Powered by Fairfight"
                 },
+                thumbnail: {
+                    url: this.client.user.avatarURL({
+                        format: "png",
+                        size: 1024
+                    })
+                }
             }
         })
     }

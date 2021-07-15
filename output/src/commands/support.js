@@ -17,10 +17,16 @@ class Bot_name extends classes_1.Command {
                 title: "Support Server",
                 description: `
                 Found any errors or need help? 
-                <:Arrow:855707077812551750> https://discord.gg/yszNJjN4Q9`,
+                <:Arrow:855707077812551750> [Support Server](https://discord.gg/yszNJjN4Q9)`,
                 footer: {
                     text: "🌐 Powered by Fairfight"
                 },
+                thumbnail: {
+                    url: this.client.user.avatarURL({
+                        format: "png",
+                        size: 1024
+                    })
+                }
             }
         })
     }
