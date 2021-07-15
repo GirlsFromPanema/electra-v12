@@ -13,10 +13,11 @@ class Bot_name extends classes_1.Command {
     }
     run(msg, args) {
         let client = this.client
-
+        /*
         if (msg.author.id !== '578678204890349594') {
             return msg.channel.send(":x: | You don't have Permissions");
             }
+            */
 	
             let clientGuilds = msg.client.guilds.cache;
             let messageObj = Discord.Util.splitMessage(
