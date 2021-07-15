@@ -1,2 +1,1 @@
-TS Client
-JS Code
+# Electra - Discord Status Tracker
