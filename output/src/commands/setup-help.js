@@ -5,7 +5,7 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "setup-help",
-            description: "Setup command",
+            description: "Help for the Setup Command",
             aliases: ["sh", "setuphelp"]
         });
         this.client = client;

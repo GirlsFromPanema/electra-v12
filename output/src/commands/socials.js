@@ -7,7 +7,7 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "socials",
-            description: "Electras Socials"
+            description: "Electras Social Medias"
         });
         this.client = client;
     }

@@ -8,7 +8,7 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "uptime",
-            description: "Uptime of bot command"
+            description: "Shows the Uptime of bot"
         });
         this.client = client;
     }

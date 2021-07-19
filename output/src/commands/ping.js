@@ -5,7 +5,8 @@ class Bot_name extends classes_1.Command {
     constructor(client) {
         super({
             name: "ping",
-            description: "Ping/Latency Command"
+            description: "Ping/Latency Command",
+            aliases: ["p"]
         });
         this.client = client;
     }

@@ -19,7 +19,7 @@ class Help extends classes_1.Command {
                 title: "Help",
                 description: `Hey there, I'm ${this.client.user.tag}! Here are all my commands:`,
                 footer: {
-                    text: "🌐 Powered by Fairfight"
+                    text: "Use *help [Command Name] for more Informations"
                 },
                 thumbnail: {
                     url: this.client.user.avatarURL({
