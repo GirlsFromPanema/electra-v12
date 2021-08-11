@@ -13,7 +13,7 @@ class Setup extends classes_1.Command {
     if (
       !msg.guild.me.permissions.has(
         "MANAGE_MESSAGES",
-        "MENTION_EVERYONE",
+        "EMBED_LINKS",
         "SEND_MESSAGES",
         "READ_MESSAGE_HISTORY",
         "VIEW_CHANNEL"
@@ -24,7 +24,7 @@ class Setup extends classes_1.Command {
 
       **I need the following Permissions to work on your Server:**
       MANAGE_MESSAGES, 
-      MENTION_EVERYONE, 
+      EMBED_LINKS, 
       SEND_MESSAGES, 
       READ_MESSAGE_HISTORY,
       VIEW_CHANNEL
