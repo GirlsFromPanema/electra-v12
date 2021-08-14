@@ -1,5 +1,5 @@
 {
-    "name": "ts-bot-template",
+    "name": "electra-bot",
     "version": "1.0.0",
     "description": "h",
     "main": "./output/src",
@@ -13,7 +13,7 @@
     "author": "Koni",
     "license": "MIT",
     "bugs": {
-        "url": ""
+        "url": "github.com/bugs"
     },
     "homepage": "",
     "dependencies": {
