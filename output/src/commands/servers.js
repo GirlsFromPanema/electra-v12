@@ -21,7 +21,7 @@ class Bot_name extends classes_1.Command {
       return `\`${guild.id}\` - **${guild.name}** - \`${guild.memberCount}\` members`;
     });
 
-    if (servers.length <= 30) {
+    if (servers.length <= 10) {
       const range = servers.length == 1 ? "[1]" : `[1 - ${servers.length}]`;
       let embed = msg.channel.send({
         embed: {
