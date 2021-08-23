@@ -18,7 +18,11 @@ class Bot_name extends classes_1.Command {
                 title: "Ping",
                 description: `
                 Gateway Ping: <:network:855826859085004820> ${this.client.ws.ping}
-                Websocket Ping: <:config:855828811630641163> ${this.client.ws.ping}`,
+                Websocket Ping: <:config:855828811630641163> ${this.client.ws.ping}
+                Serving Coffee to: ${client.guilds.cache.map(s => s.memberCount).reduce((a, b) => a + b)} Users
+                Watching over: ${client.guilds.cache.size} Servers
+                `,
+                
                
                 footer: {
                     text: "🌐 Powered by Fairfight"
