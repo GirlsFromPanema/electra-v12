@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const { Guild, Message, MessageEmbed } = require("discord.js");
+const { Guild, message, MessageEmbed } = require("discord.js");
 const classes_1 = require("../classes");
 class Bot_name extends classes_1.Command {
   constructor(client) {
@@ -14,6 +14,7 @@ class Bot_name extends classes_1.Command {
   }
   async run(msg, args) {
     let client = this.client;
+
 
     // Checking if Bot has Permissions
     if (
@@ -44,73 +45,142 @@ class Bot_name extends classes_1.Command {
       return msg.channel.send(
         `${msg.author.username} | :x: You need Admin Perms to execute this Command`
       );
-    await msg.delete();
+    
+    await msg.delete()
 
+    const processembed = new MessageEmbed()
+      .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
+      .setColor("BLURPLE")
+      .setFooter("Waiting for your reaction! | Canceling in `60` Seconds")
+      .setTitle(`⚠️ | Information`)
+      .setDescription(
+        "Click ✅ to proceed the Setup\n Click ❌ to cancel the Setup"
+      );
 
-    // Creating Role for Developers
-    const role = await msg.guild.roles.create({
-      data: {
-        name: "Developers",
-        color: "BLUE",
-      },
-    });
+    const msgg = await msg.channel.send(processembed);
+    setTimeout(() => msg.delete(), 60000);
+    //message.channel.send("Didn't received any reaction after 10 seconds!")
 
-    // Developer Information Embed for the freshly created Channel
-    const embednewchannel = new MessageEmbed()
-    .setTitle("Developer Information") 
-    .setDescription(`I have now created an special Category, Channel and Role where you can use me.\n
+    /* Loading Embed removed
+    let okembed = new MessageEmbed()
+      .setDescription(
+        "<:Loading:869268932018704414> started processing the Environment"
+      )
+      .setColor("BLURPLE")
+      .setTimestamp()
+      .setFooter(`Done by ${message.author.username}`);
+    */
+
+    // Cancel Setup Process if there is already an existing channel called "Developer"
+    // @ts-ignore
+    let enverror = new MessageEmbed()
+      .setTitle(":x: | Error")
+      .setDescription(
+        `${msg.author.username}, seems like your Server already has an Developer Category or Channel set\n\nThe Setup got cancelled to prevent Spaming Server Channels, Categories and Roles\n\nIf you wish to proceed this Setup, delete the Channel or Category called **Developer** and re-run this Command`
+      )
+      .setColor("RED")
+      //.setFooter("")
+      .setImage(
+        "https://cdn.discordapp.com/attachments/860222821217468436/871476386739675146/e5017b97fecb1abaaacd304d24882905.webp"
+      )
+      .setTimestamp();
+
+    let done = new MessageEmbed()
+      .setTitle("✅ | Success")
+      .setDescription("Successfully created the Environment")
+      .setColor("GREEN")
+      .setTimestamp()
+      .setFooter(`Done by ${msg.author.username}`);
+
+    let devembed = new MessageEmbed()
+      .setTitle("Developer Information")
+      .setDescription(
+        `I have now created a special Category, Channel and Role where you can use me.\n
     Remember to change custom User Permissions if needed.\n
-    **Thanks for using me!❤️**`)
-    .setThumbnail("https://cdn.discordapp.com/attachments/863402250117185570/866806907570094080/459061ad92090eda37deacdebd0dfca3.png")
-    .setColor("RANDOM")
-    .setFooter("Electra | Helping Developers")
-    .setTimestamp()
+    **Thanks for using me!❤️**`
+      )
+      .setImage(
+        "https://cdn.discordapp.com/attachments/860222821217468436/871476386739675146/e5017b97fecb1abaaacd304d24882905.webp"
+      )
+      .setColor("PINK");
+    //.setFooter(`Ordered by: ${message.author.username}`)
+    //.setTimestamp()
+
+    await msgg.react("✅");
+    await msgg.react("❌");
+
+    const collector = msgg.createReactionCollector(
+       
+      (reaction, user) => user.id === msg.author.id
+    );
+    collector.on("collect", async (reaction) => {
+      /*
+      Deleting the message and cancel the Command when the Author reacts on ❌
+      */
+      if (reaction.emoji.name === "❌") {
+        return msgg.delete();
+      }
+
+      if (reaction.emoji.name === "✅") {
+        msgg.delete();
 
 
-    // Creating Channels and Category for Developers
-    const channel = await msg.guild.channels
-      .create("Developers", {
-        type: "category",
-        permissionOverwrites: [
-          {
-            id: msg.guild.id,
-            deny: ["VIEW_CHANNEL"],
+        /*
+        @param Checking if any Channel already inclused or has the Name "Developer"
+        @param If so, we are canceling the Setup and sending an Error Embed
+        @param Very good against Spam, Raids etc - a good security option
+        */
+        const ch = msg.guild.channels.cache.find(
+          (ch) => ch.name === "developer"
+        );
+        if (ch) return msg.channel.send(`${msg.author} your Server already has an Channel Environment called Developer\nIf you want to proceed, delete your current Channel and re-run!`);
+        // End of security check
+
+        // If everything is fine, the setup finishes and send this Message into the Channel the Setup got activated
+        // @ts-ignore
+        const successmessage = await msg.channel.send(done);
+        //setTimeout(() => msg.delete(), 10000);
+
+        // @ts-ignore
+        const createrole = await msg.guild.roles.create({
+          data: {
+            name: "Developers",
+            color: "BLUE",
+            /*permissionOverwrites: [
+              {
+                id: message.guild.roles.everyone,
+                deny: ["SEND_MESSAGES", "VIEW_CHANNEL"],
+              },
+            ],
+            */
           },
-        ],
-      })
-      .then((cat) => {
-        msg.guild.channels
-          .create("developers", {
+        });
+
+        const category = await msg.guild.channels.create("Developers", {
+          type: "category",
+          permissionOverwrites: [
+            {
+              id: msg.guild.roles.everyone || msg.guild.id,
+              deny: ["SEND_MESSAGES", "VIEW_CHANNEL"],
+            },
+          ],
+        });
+        // @ts-ignore
+        const channel = await msg.guild.channels
+          .create("developer", {
             type: "text",
-            parent: cat,
+            parent: category,
             permissionOverwrites: [
               {
-                id: msg.guild.id,
-                deny: ["VIEW_CHANNEL"],
+                id: msg.guild.roles.everyone || msg.guild.id,
+                deny: ["SEND_MESSAGES", "VIEW_CHANNEL"],
               },
             ],
           })
-          .then((channel) => channel.send(embednewchannel));
-      });
-    
-    // When successfully created Environment, embed into the authors channel
-    let embed = msg.channel.send({
-      embed: {
-        color: client.brandingColor,
-        title: "Environment Created",
-        description: `
-                <:tada:864923021697351680> Successfully created the Developers Role, Category and Channel!
-                `,
-        footer: {
-          text: "🌐 Powered by Fairfight",
-        },
-        thumbnail: {
-          url: this.client.user.avatarURL({
-            format: "png",
-            size: 1024,
-          }),
-        },
-      },
+          .then((channel) => channel.send(devembed));
+      }
+
+      await reaction.users.remove(msg.author.id);
     });
   }
 }

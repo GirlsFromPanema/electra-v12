@@ -12,6 +12,7 @@ class Bot_name extends classes_1.Command {
     }
     run(msg, args) {
         let client = this.client
+        msg.react("😺")
         let embed = msg.channel.send({
             embed: {
                 color: client.brandingColor,
