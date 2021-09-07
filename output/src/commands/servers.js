@@ -22,24 +22,17 @@ class Bot_name extends classes_1.Command {
     const servers = msg.client.guilds.cache.array().map((guild) => {
       return `\`${guild.id}\` - **${guild.name}** - \`${guild.memberCount}\` members`;
     });
-
-    let embed = msg.channel.send({
-      title: "Server List",
-      color: "BLUE",
-      description: ``,
-      footer: {
-        text: msg.author.displayAvatarURL({ dynamic: true }),
-      }
-
-    })
-      
-
+    
     if (servers.length <= 10) {
       const range = servers.length == 1 ? "[1]" : `[1 - ${servers.length}]`;
-      let serverembed = msg.channel.send({
-          title: `Server List ${range}`,
-          description: servers.join("\n")
-      });
+      let embed = msg.channel.send({
+        title: "Server List",
+        color: "BLUE",
+        description: servers.join("\n"),
+        footer: {
+          text: msg.author.displayAvatarURL({ dynamic: true }),
+        }
+      })
     } else {
       new ReactionMenu(
         msg.client,
