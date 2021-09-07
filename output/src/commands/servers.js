@@ -38,7 +38,7 @@ class Bot_name extends classes_1.Command {
         msg.client,
         msg.channel,
         msg.member,
-        embed,
+        MessageEmbed(),
         servers
       );
     }
