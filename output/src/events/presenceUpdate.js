@@ -16,11 +16,11 @@ exports.default = {
             return;
         if (oldSt == "offline") { //if a bot became online
             //@ts-ignore
-            oldPresence.member.guild.channels.cache.get(config.channel).send(`<@&${config.role}>`, { embed: { title: "Bot went online!", description: `Looks like ${oldPresence.member} (${oldPresence.user.tag}) just went back online! `, thumbnail: { url: oldPresence.user.avatarURL({ format: "png", size: 1024 }) }, timestamp: new Date(Date.now()) } });
+            oldPresence.member.guild.channels.cache.get(config.channel).send(`<@&${config.role}>`, { embed: { title: "Bot went online!", description: `Looks like ${oldPresence.member} (${oldPresence.user.tag}) just went back online! `, color: "GREEN", thumbnail: { url: oldPresence.user.avatarURL({ format: "png", size: 1024 }) }, timestamp: new Date(Date.now()) } });
         }
         else if (newSt == "offline") { //if a bot became offline
             //@ts-ignore
-            oldPresence.member.guild.channels.cache.get(config.channel).send(`<@&${config.role}>`, { embed: { title: "Bot went offline!", description: `${oldPresence.member} (${oldPresence.user.tag}) just went offline!`, thumbnail: { url: oldPresence.user.avatarURL({ format: "png", size: 1024 }) }, timestamp: new Date(Date.now()) } });
+            oldPresence.member.guild.channels.cache.get(config.channel).send(`<@&${config.role}>`, { embed: { title: "Bot went offline!", description: `${oldPresence.member} (${oldPresence.user.tag}) just went offline!`, color: "RED", thumbnail: { url: oldPresence.user.avatarURL({ format: "png", size: 1024 }) }, timestamp: new Date(Date.now()) } });
         }
         else
             return;
