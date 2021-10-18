@@ -10,3 +10,4 @@ discord-t/source.t
 Bot.sqlite
 json.sqlite
 config.json
+test.js
